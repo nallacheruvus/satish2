@@ -1,0 +1,92 @@
+Each ABAP program has a type associated with it which determines how the program is executed and handled by the runtime environment, resources used by the program, and whether it can support screens. Let us first see the program types supported by ABAP workbench.
+
+·         Executable Programs.
+
+·         Module pools.
+
+·         Class pools.
+
+·         Interface pools.
+
+·         Subroutines.
+
+·         Function groups.
+
+·         Type groups.
+
+·         Include programs.
+
+Let us discuss each of them.
+
+Executable programs: These are type I programs represented with the keyword REPORT. These are created using the transaction code SE38 from the ABAP workbench. An executable program can be called in another program using 2 ways.
+
+1.    Using SUBMIT statement
+
+e.g.: SUBMIT <Program Name>
+       2. Using Tcode
+
+Call transaction<Tcode>
+
+Where a Tcode can be created using SE93.
+
+
+These are mainly used to display large amounts of data. It is an event driven programming. The following are the different events in a report program.
+
+·         Initialization
+
+·         At Selection-Screen
+
+·         Start-of-Selection
+
+·         End-of-selection
+
+·         Load-of-Program
+
+·         Top-of-Page during Line Selection
+
+·         At Line-Selection
+
+·         At User-Command
+
+·         At PF<nn>
+
+Module Pools: These are type M programs represented with the keyword PROGRAM. For the execution of these programs at least one transaction code is needed where the initial screen is specified. The default screen number is 1000.
+
+The following are the four components of a Module pool program.
+
+·         Screens.
+
+·         Transaction Codes.
+
+·         GUI Status.
+
+·         ABAP Program.
+
+
+Module pool program also supports 4 different events associated with the screen and its elements. The following are the different events in a module pool program.
+
+
+·         Process Before Output (PBO)
+
+·         Process After Input (PAI)
+
+·         Process on Help Request (POH)
+
+·         Process on Value Request (POV)
+
+Class Pools: These are type K programs represented with the keyword CLASS-POOL. 
+They can contain one global class and any number of local classes. These programs do not contain any screens. They cannot be executed directly. They are loaded by using their global classes. They are created with the Class Builder tool.
+
+Interface Pools: These are type J programs represented with the keyword INTERFACE-POOL. Like class pool programs they also cannot contain there only processing blocks and screens. They contain a single definition of a global interface, which can be implemented in any global or local class. They are created with the Class Builder tool.
+
+Subroutines: These are type S programs represented with the keyword PROGRAM. Subroutines are a block of code between the keywords FORM and ENDFORM.
+
+These are basically of two types.
+
+1. Internal: In this type subroutine is defined in the same program in which is called. It can access all the data objects defined in the ABAP program. An internal subroutine can be called using the PERFORM [SUBROUTINE] < [PASS] > statement.
+2. External: In this type subroutine is defined outside the program in which it is called. It can access all the data objects defined in the common or global parts of memory or as an alternative can use the <pass> option. An external subroutine can be called using the PERFORM [SUBROUTINE] (<PROGRAM>) < [PASS] > statement.
+Function Groups: These are type F programs represented with the keyword FUNCTION-POOL. They are created with the Function Builder tool. They cannot be executed independently but using the associated function module. All the function modules associated with a particular function group can access the global data. SAP supports large number of standard function groups. These are created using the transaction code SE37.
+
+Type groups: These are represented with the keyword TYPE-POOL. They cannot contain their own screens or processing blocks. Using their global data types they can be made visible in the ABAP program. They are created with the help of ABAP Dictionary tool.
+
+Include Programs: These are type I programs represented with the keyword INCLUDE. If the same sequences of steps are used in the program then they can be placed in an include program so that the number lines of code can be reduced (e.g.: Lengthy data declarations). They cannot be executed independently. They must be called from an executable program or another include program. The code written as part of the include program is resolved before generation. After generation, the programs contains the source code of all the include programs. The statement INCLUDE [PROGRAMNAME] is used to include an include program as part of a program.
